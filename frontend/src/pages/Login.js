@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 function Login() {
-  const [form, setForm] = useState({ email: '', password: '' });//useState crea un estado local llamado form, Inicialmente, los campos email y password están vacíos (''), setForm se usa para actualizar los valores del formulario cuando el usuario escribe en los inputs
+  const [form, setForm] = useState({ name: '', password: '' });//useState crea un estado local llamado form, Inicialmente, los campos email y password están vacíos (''), setForm se usa para actualizar los valores del formulario cuando el usuario escribe en los inputs
   const navigate = useNavigate(); //Permite redirigir a otra página después de un evento exitoso, por ejemplo al dashboard tras iniciar sesión.
 
   const handleChange = (e) => {
@@ -36,7 +36,7 @@ function Login() {
     <div>
       <h2>Login</h2>
       <form onSubmit={handleSubmit}>
-        <input name="email" type="email" placeholder="Email" value={form.email} onChange={handleChange} required />
+        <input name="name" type="name" placeholder="name" value={form.name} onChange={handleChange} required />
         <input name="password" type="password" placeholder="Contraseña" value={form.password} onChange={handleChange} required />
         <button type="submit">Ingresar</button>
       </form>
