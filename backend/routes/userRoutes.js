@@ -2,7 +2,6 @@ const express = require('express');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User'); 
-
 const router = express.Router();
 
 // Registro de usuario
@@ -10,7 +9,7 @@ router.post('/register', async (req, res) => {
   const { name, lastName, email, password } = req.body;
   try {
     // Verificar si el usuario ya existe
-    const userExists = await User.findOne({ email });
+    const userExists = await User.findOne({ name });
     if (userExists) return res.status(400).json({ message: 'Usuario ya registrado' });
 
     // Encriptar contraseña
@@ -33,9 +32,9 @@ router.post('/register', async (req, res) => {
 
 // Login de usuario
 router.post('/login', async (req, res) => {
-  const { email, password } = req.body;
+  const { name, password } = req.body;
   try {
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ name });
     if (!user) return res.status(400).json({ message: 'Usuario no encontrado' });
 
     const validPassword = await bcrypt.compare(password, user.password);
